@@ -14,9 +14,9 @@ function getRandomHexColor() {
 buttonStart.addEventListener('click', handleButtonStartClick);
 
 function handleButtonStartClick() {
-  // установить интервал
-  // сделать колбек в виде функции, иниц.рандом цвет
-  // навесить клас дисплей нон
+  // встановити інтервал
+  // зробити колбек функції, що навісить.рандом колір на бек
+  // деактивувати кнопку
 
   const changeBgColor = () =>
     (bodyEl.style.backgroundColor = getRandomHexColor());
@@ -31,10 +31,9 @@ function handleButtonStartClick() {
 buttonStop.addEventListener('click', handleButtonStopClick);
 
 function handleButtonStopClick() {
-  // снять клас дисплей нон
-  // остановить функцию getRandomHexColor
-  // снять интервал
-
+  // зняти прихованість (активувати кнопку)
+  // зупинити функцію getRandomHexColor
+  // зняти інтервал
   clearInterval(intervalId);
   if (!buttonStartStatus) {
     buttonStart.removeAttribute('disabled');
