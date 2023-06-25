@@ -25,8 +25,6 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    // console.log(selectedDates[0]);
-    // if (selectedDates[0].getTime() > currentTime)
     if (selectedDates[0] > currentTime) {
       buttonStartStatus = true;
       refs.btnStart.removeAttribute('disabled');

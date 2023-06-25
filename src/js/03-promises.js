@@ -1,16 +1,46 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const formEl = document.querySelector('form');
 const { delay, step, amount } = formEl;
-// console.log(delay.value);
-// console.log(step.value);
-// console.log(amount.value);
 
-// const amount = document.querySelector('input[name="amount"]');
 formEl.addEventListener('submit', handleFormSubmit);
 
 function handleFormSubmit(event) {
   event.preventDefault();
 
-  createPromise(amount.value);
+  let inputDelay = Number(delay.value);
+  let inputStep = Number(step.value);
+  let inputAmount = Number(amount.value);
+
+  for (let i = 1; i <= inputAmount; i += 1) {
+    inputDelay += inputStep;
+    createPromise(i, inputDelay)
+      .then(({ position, delay }) => {
+        Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
+        // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      })
+      .catch(({ position, delay }) => {
+        Notify.failure(`Rejected promise ${position} in ${delay}ms`);
+        // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+      });
+  }
+
+  formEl.reset();
+}
+
+function createPromise(position, delay) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const shouldResolve = Math.random() > 0.3;
+      if (shouldResolve) {
+        resolve({ position, delay });
+        // Fulfill
+      } else {
+        reject({ position, delay });
+        // Reject
+      }
+    }, delay);
+  });
 }
 
 // Напиши скрипт, який на момент сабміту форми
@@ -22,15 +52,6 @@ function handleFormSubmit(event) {
 //   враховуючи першу затримку(delay), введену користувачем,
 //   і крок(step).
 
-function createPromise(position, delay) {
-  const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
-    // Fulfill
-  } else {
-    // Reject
-  }
-}
-
 //   Доповни код функції createPromise таким чином,
 //   щоб вона повертала один проміс, який виконується
 //   або відхиляється через delay часу.Значенням промісу
@@ -39,11 +60,3 @@ function createPromise(position, delay) {
 // параметрів.Використовуй початковий код функції для
 // вибору того, що потрібно зробити з промісом - виконати
 // або відхилити.
-
-createPromise(2, 1500)
-  .then(({ position, delay }) => {
-    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-  })
-  .catch(({ position, delay }) => {
-    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-  });
