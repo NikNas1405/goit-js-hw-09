@@ -2,10 +2,13 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-const refs = {
-  datetimePicker: document.querySelector('#datetime-picker'),
-  btnStart: document.querySelector('[data-start]'),
-};
+// const refs = {
+//   datetimePicker: document.querySelector('#datetime-picker'),
+//   btnStart: document.querySelector('[data-start]'),
+// };
+
+const datetimePicker = document.querySelector('#datetime-picker');
+const btnStart = document.querySelector('[data-start]');
 
 const timerValue = {
   days: document.querySelector('[data-days]'),
@@ -15,7 +18,7 @@ const timerValue = {
 };
 
 let buttonStartStatus = false;
-refs.btnStart.setAttribute('disabled', 'disabled');
+btnStart.setAttribute('disabled', 'disabled');
 
 const currentTime = Date.now();
 
@@ -27,8 +30,8 @@ const options = {
   onClose(selectedDates) {
     if (selectedDates[0] > currentTime) {
       buttonStartStatus = true;
-      refs.btnStart.removeAttribute('disabled');
-      refs.btnStart.addEventListener('click', handleButtonStartClick);
+      btnStart.removeAttribute('disabled');
+      btnStart.addEventListener('click', handleButtonStartClick);
       Report.success('&#128077;', 'Click on start!');
     } else {
       // window.alert('Please choose a date in the future');
@@ -43,12 +46,12 @@ const options = {
 
 const flatpickr = require('flatpickr');
 
-flatpickr(refs.datetimePicker, options);
+flatpickr(datetimePicker, options);
 
 function handleButtonStartClick() {
   let timer = setInterval(() => {
-    let countdown = new Date(refs.datetimePicker.value) - new Date();
-    refs.datetimePicker.disabled = true;
+    let countdown = new Date(datetimePicker.value) - new Date();
+    datetimePicker.disabled = true;
     if (countdown >= 0) {
       let timerData = convertMs(countdown);
       timerValue.days.textContent = timerData.days;
