@@ -46,7 +46,7 @@ const options = {
 
 const flatpickr = require('flatpickr');
 
-flatpickr(datetimePicker, options);
+flatpickr(datetimePicker, { ...options });
 
 function handleButtonStartClick() {
   let timer = setInterval(() => {
