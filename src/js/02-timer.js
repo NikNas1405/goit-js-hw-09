@@ -48,6 +48,8 @@ function handleButtonStartClick() {
   let timer = setInterval(() => {
     let countdown = new Date(datetimePicker.value) - new Date();
     datetimePicker.disabled = true;
+    btnStart.classList.remove('btn');
+    btnStart.classList.add('btn-disabled');
     if (countdown >= 0) {
       let timerData = convertMs(countdown);
       timerValue.days.textContent = timerData.days;

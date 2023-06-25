@@ -17,17 +17,6 @@ img {
   max-width: 100%;
 }
 
-.timer {
-  display: flex;
-  gap: 10px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
 .main-body {
   background: radial-gradient(
       ellipse at center,
@@ -45,11 +34,10 @@ img {
 }
 
 .page-body {
-   background:
-    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/31787/stars.jpg);
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/31787/stars.jpg);
   background-size: cover;
-   color: white;
-  }
+  color: white;
+}
 
 .element-panel {
   position: absolute;
@@ -109,6 +97,42 @@ img {
   border: transparent;
   transition: background-color 250ms ease-in;
   cursor: pointer;
+}
+
+.timer {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.value {
+  font-size: 60px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 4px;
+  color: #fdec06;
+  text-shadow: 0 1px 15px #f8f8f6, 0 13px 28px #ffffff;
+}
+
+.label {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #ffee00;
+  text-shadow: 0px 4px 4px #f8f8f6, 0 -2px 1px #fff;
+}
+
+p > a {
+  text-decoration: none;
+  color: #fff;
+  animation: neon1 1.5s ease-in-out infinite alternate;
 }
 
 audio {
