@@ -44,11 +44,6 @@ const options = {
   },
 };
 
-const flatpickr = require('flatpickr');
-
-// flatpickr(datetimePicker, options);
-flatpickr('#datetime-picker', options);
-
 function handleButtonStartClick() {
   let timer = setInterval(() => {
     let countdown = new Date(datetimePicker.value) - new Date();
@@ -91,3 +86,7 @@ function addLeadingZero(value) {
 }
 
 Report.info('👋 Hello!', 'Please, choose a date and click on start', 'Okay');
+
+// const flatpickr = require('flatpickr');
+
+flatpickr(datetimePicker, options);
