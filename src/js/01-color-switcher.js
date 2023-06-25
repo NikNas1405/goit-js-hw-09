@@ -1,3 +1,10 @@
+import { Report } from 'notiflix/build/notiflix-report-aio';
+
+Report.info(
+  '👋 Hello!',
+  'Click on "START" to change the color of the background of the page or "STOP" to stop it'
+);
+
 const buttonStart = document.querySelector('[data-start]');
 const buttonStop = document.querySelector('[data-stop]');
 const bodyEl = document.querySelector('body');
@@ -14,9 +21,7 @@ function getRandomHexColor() {
 buttonStart.addEventListener('click', handleButtonStartClick);
 
 function handleButtonStartClick() {
-  // встановити інтервал
-  // зробити колбек функції, що навісить.рандом колір на бек
-  // деактивувати кнопку
+  bodyEl.classList.remove('page-body');
 
   const changeBgColor = () =>
     (bodyEl.style.backgroundColor = getRandomHexColor());
@@ -25,18 +30,19 @@ function handleButtonStartClick() {
   if (buttonStartStatus) {
     buttonStart.setAttribute('disabled', 'disabled');
     buttonStartStatus = false;
+    buttonStart.classList.remove('btn');
+    buttonStart.classList.add('btn-disabled');
   }
 }
 
 buttonStop.addEventListener('click', handleButtonStopClick);
 
 function handleButtonStopClick() {
-  // зняти прихованість (активувати кнопку)
-  // зупинити функцію getRandomHexColor
-  // зняти інтервал
   clearInterval(intervalId);
   if (!buttonStartStatus) {
     buttonStart.removeAttribute('disabled');
     buttonStartStatus = true;
+    buttonStart.classList.remove('btn-disabled');
+    buttonStart.classList.add('btn');
   }
 }

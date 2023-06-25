@@ -2,11 +2,6 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-// const refs = {
-//   datetimePicker: document.querySelector('#datetime-picker'),
-//   btnStart: document.querySelector('[data-start]'),
-// };
-
 const datetimePicker = document.querySelector('#datetime-picker');
 const btnStart = document.querySelector('[data-start]');
 
@@ -33,8 +28,13 @@ const options = {
       btnStart.removeAttribute('disabled');
       btnStart.addEventListener('click', handleButtonStartClick);
       Report.success('&#128077;', 'Click on start!');
+      btnStart.classList.remove('btn-disabled');
+      btnStart.classList.add('btn');
+      // });
     } else {
       // window.alert('Please choose a date in the future');
+      btnStart.classList.remove('btn');
+      btnStart.classList.add('btn-disabled');
       Report.warning(
         '&#129335; Ooops...',
         'Please choose a date in the future',
@@ -86,7 +86,5 @@ function addLeadingZero(value) {
 }
 
 Report.info('👋 Hello!', 'Please, choose a date and click on start', 'Okay');
-
-// const flatpickr = require('flatpickr');
 
 flatpickr(datetimePicker, options);
