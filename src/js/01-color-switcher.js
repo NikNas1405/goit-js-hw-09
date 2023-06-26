@@ -9,7 +9,6 @@ const buttonStart = document.querySelector('[data-start]');
 const buttonStop = document.querySelector('[data-stop]');
 const bodyEl = document.querySelector('body');
 
-let buttonStartStatus = true;
 let intervalId = null;
 
 function getRandomHexColor() {
@@ -27,22 +26,25 @@ function handleButtonStartClick() {
     (bodyEl.style.backgroundColor = getRandomHexColor());
 
   intervalId = setInterval(changeBgColor, 1000);
-  if (buttonStartStatus) {
-    buttonStart.setAttribute('disabled', 'disabled');
-    buttonStartStatus = false;
-    buttonStart.classList.remove('btn');
-    buttonStart.classList.add('btn-disabled');
-  }
+  buttonStop.removeAttribute('disabled');
+  buttonStop.classList.remove('btn-disabled');
+  buttonStop.classList.add('btn');
+
+  buttonStart.setAttribute('disabled', 'disabled');
+  buttonStart.classList.remove('btn');
+  buttonStart.classList.add('btn-disabled');
 }
 
 buttonStop.addEventListener('click', handleButtonStopClick);
 
 function handleButtonStopClick() {
   clearInterval(intervalId);
-  if (!buttonStartStatus) {
-    buttonStart.removeAttribute('disabled');
-    buttonStartStatus = true;
-    buttonStart.classList.remove('btn-disabled');
-    buttonStart.classList.add('btn');
-  }
+
+  buttonStart.classList.remove('btn-disabled');
+  buttonStart.classList.add('btn');
+  buttonStart.removeAttribute('disabled');
+
+  buttonStop.setAttribute('disabled', 'disabled');
+  buttonStop.classList.remove('btn');
+  buttonStop.classList.add('btn-disabled');
 }
